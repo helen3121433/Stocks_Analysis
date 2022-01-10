@@ -11,11 +11,11 @@
 
  ### Orginal Script: 
     
-    In the original script, we're using two FOR loops to run the stock data, this will take more time. We first create a For loop for tickers to loop through different 12 tickers ("AY", "CSIQ", "DQ", etc), one by one. Then create another For loop inside of the Ticker FOR loop to look through each row and see if it matches the current ticker. 
+- In the original script, we're using two FOR loops to run the stock data, this will take more time. We first create a For loop for tickers to loop through different 12 tickers ("AY", "CSIQ", "DQ", etc), one by one. Then create another For loop inside of the Ticker FOR loop to look through each row and see if it matches the current ticker. 
     
     For example, for i=0, we first looking at ticker(0) = "AY". Then we loop through all rows from row 2 to the last row to see if the cell value matches "AY". If match, we adding teh totalVolume. If the current cells is matched as "AY" but the previous one is not, then we record down the close price as starting price. If the current cells are matched as "AY" but the next cell does not match, then we record down the close price as the ending price. Now Ticker FOR Loop going to i=1, ticker(1) = "CSIQ" then we looped through all rows again to see if cell match to "CSIQ". Concludes that each time we're looking for a ticker's name, we need to loop through the whole data again. In the original script, we will need to loop through whole data 12 times for each stock.
 
-    In the original script, we put down the value on the "All Stocks Analysis" sheet for of current ticker(i) before we started to look through the next ticker name.
+- In the original script, we put down the value on the "All Stocks Analysis" sheet for of current ticker(i) before we started to look through the next ticker name.
 
         For i = 0 To 11
         ticker = tickers(i)
@@ -47,17 +47,15 @@
         Cells(4 + i, 1).Value = ticker
         Cells(4 + i, 2).Value = totalVolume
         Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
-    Next i
+       Next i
 
 ### Refactor Script:
-    In the refactor script, we use variable tickerIndex instead of using a for a loop. This will help eliminate a big amount of time to run datas and get results. In this script, we determined the value while we run the result in each row, and use tickerIndex to help us organize the result of each ticker.
+- In the refactor script, we use variable tickerIndex instead of using a for a loop. This will help eliminate a big amount of time to run datas and get results. In this script, we determined the value while we run the result in each row, and use tickerIndex to help us organize the result of each ticker.
     
     For example, we first start with tickerIndex as 0. For i = 2, we first check on row 2. We record the volumes of the current ticker on this row and assign as tickerVolumes(0), which means we putting down volumes for "AY" ticker. Then we check if this current row was the first select of current ticker(0) "AY". If not the first select, then we check if this current row was the last selected of the current ticker(0) "AY". If nor first select and nor last select, then we going to next row i = 1, and check all the if statement again. If we found out the current row is the last select of current ticker(0) = "AY", then we change the tickerIndex as 1. Then, starting from the next row, all ticker volume records will be assigned to tickerVolume(1), which was the "CSIQ" ticker. We're now recording all volume for "CSIQ" ticker until we figure out the last row of "CSIQ"
+- In Refactor, we put all values on the "All Stocks Analysis" sheet at the end after we run through all the rows, and figured the value for all tickers.
 
-    In Refactor, we put all values on the "All Stocks Analysis" sheet at the end after we run through all the rows, and figured the value for all tickers.
-
-
-    For i = 2 To RowCount
+        For i = 2 To RowCount
     
         '3a) Increase volume for current ticker
        'Example if we are looking for 2018: loopping through different ticker from row 2 till row end.
@@ -101,11 +99,10 @@
             tickerIndex = tickerIndex + 1
 
         End If
-
+        
+       Next i
     
-    Next i
-    
-     For i = 0 To 11
+        For i = 0 To 11
         
         'working on All Stocks Analysis worksheet
         Worksheets("All Stocks Analysis").Activate
@@ -125,16 +122,20 @@
         'tickerStartPrices(1) and tickerEndingPrices(1) was close price for "CSIQ", etc
         Cells(4 + i, 3).Value = tickerEndingPrices(i) / tickerStartingPrices(i) - 1
         
-    Next i
+         Next i
 
 ### Compares on running time
-    - 2017 running time
-        ![original script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2017.PNG)
-        ![Refactoring script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2017.PNG)
+    - 2017 running time From Original Script
+   ![original script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2017.PNG)
+   
+    - 2017 running time From Refactoring Script
+   ![Refactoring script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2017.PNG)
 
-    - 2018 running time
-        ![original script 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2018.PNG)
-        ![Refactoring scipt 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2018.PNG)
+    - 2018 running time From Original Script
+   ![original script 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2018.PNG)
+   
+    - 2018 running time From Refactoring Script
+   ![Refactoring scipt 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2018.PNG)
 
 ## Summary
 
