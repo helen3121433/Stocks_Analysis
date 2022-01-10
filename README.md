@@ -104,7 +104,8 @@
 
     
     Next i
-For i = 0 To 11
+    
+     For i = 0 To 11
         
         'working on All Stocks Analysis worksheet
         Worksheets("All Stocks Analysis").Activate
