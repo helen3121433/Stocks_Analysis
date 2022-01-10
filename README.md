@@ -129,12 +129,12 @@
 
 ### Compares on running time
     - 2017 running time
-        ![original script 2017]()
-        ![Refactoring script 2017]()
+        ![original script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2017.PNG)
+        ![Refactoring script 2017](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2017.PNG)
 
     - 2018 running time
-        ![original script 2018]()
-        ![Refactoring scipt 2018]()
+        ![original script 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/Resources/Original_2018.PNG)
+        ![Refactoring scipt 2018](https://github.com/helen3121433/Stocks_Analysis/blob/main/VBA_Challenge_2018.PNG)
 
 ## Summary
 
